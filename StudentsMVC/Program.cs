@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
+using StudentsMVC.Extensions;
 using StudentsMVC.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Add services
+builder.Services.AddServices();
 
 // Add context
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
