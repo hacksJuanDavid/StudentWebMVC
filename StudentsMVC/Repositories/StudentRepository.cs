@@ -14,7 +14,7 @@ public class StudentRepository : IStudentRepository
         _studentService = studentService;
     }
 
-    public async Task<List<Student?>> GetAllStudentsAsync()
+    public async Task<List<Student>?> GetAllStudentsAsync()
     {
         return await _studentService.GetAllStudentsAsync();
     }
@@ -29,7 +29,7 @@ public class StudentRepository : IStudentRepository
         return await _studentService.CreateStudentAsync(student);
     }
 
-    public async Task<Student?> UpdateStudentAsync(int id, Student student)
+    public async Task<Student?> UpdateStudentAsync(int id, Student? student)
     {
         return await _studentService.UpdateStudentAsync(id, student);
     }

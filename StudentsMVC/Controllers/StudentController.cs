@@ -48,12 +48,12 @@ namespace StudentsMVC.Controllers
             try
             {
                 var student = _studentRepository.GetStudentByIdAsync(id).Result;
-        
+
                 if (student == null)
                 {
                     return NotFound(); // Retorna una respuesta 404 si el estudiante no se encuentra
                 }
-        
+
                 return View(student);
             }
             catch
@@ -65,7 +65,7 @@ namespace StudentsMVC.Controllers
         // POST: Student/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Student student)
+        public ActionResult Edit(int id, Student? student)
         {
             try
             {
