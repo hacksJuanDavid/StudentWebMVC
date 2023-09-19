@@ -1,8 +1,11 @@
-using Microsoft.EntityFrameworkCore;
 using StudentsMVC.Extensions;
 using StudentsMVC.Models;
+using StudentsMVC.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add AppSettings
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
