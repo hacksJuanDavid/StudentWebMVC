@@ -1,9 +1,5 @@
-using System.Configuration;
 using RestSharp;
-using StudentsMVC.Interfaces;
-using StudentsMVC.Repositories;
 using StudentsMVC.Services;
-using StudentsMVC.Settings;
 
 namespace StudentsMVC.Extensions;
 
@@ -18,8 +14,6 @@ public static class ServiceExtension
         // Add StudentService
         services.AddScoped<IStudentService, StudentService>();
 
-        // ADd StudentRepository
-        services.AddScoped<IStudentRepository, StudentRepository>();
         return services;
     }
 }

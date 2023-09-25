@@ -1,22 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
 using StudentsMVC.Models;
-using StudentsMVC.Interfaces; // Importa el namespace de IStudentRepository
+using StudentsMVC.Services; 
 
 namespace StudentsMVC.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly IStudentRepository _studentRepository; // Cambia la inyección a IStudentRepository
+        private readonly IStudentService _studentService; // Cambia la inyección a la interfaz IStudentService
 
-        public StudentController(IStudentRepository studentRepository)
+        public StudentController(IStudentService studentService)
         {
-            _studentRepository = studentRepository;
+            _studentService = studentService;
         }
 
         // GET: Student
         public ActionResult Index()
         {
-            var studentList = _studentRepository.GetAllStudentsAsync().Result; // Utiliza el repositorio
+            var studentList = _studentService.GetAllStudentsAsync().Result; // Utiliza el IStudentService
             return View(studentList);
         }
 
@@ -33,7 +33,7 @@ namespace StudentsMVC.Controllers
         {
             try
             {
-                _studentRepository.CreateStudentAsync(student); // Utiliza el repositorio
+                _studentService.CreateStudentAsync(student); // Utiliza el IStudentService
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -47,7 +47,7 @@ namespace StudentsMVC.Controllers
         {
             try
             {
-                var student = _studentRepository.GetStudentByIdAsync(id).Result;
+                var student = _studentService.GetStudentByIdAsync(id).Result;
 
                 if (student == null)
                 {
@@ -69,7 +69,7 @@ namespace StudentsMVC.Controllers
         {
             try
             {
-                _studentRepository.UpdateStudentAsync(id, student); // Utiliza el repositorio
+                _studentService.UpdateStudentAsync(id, student); // Utiliza el IStudentService
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -83,7 +83,7 @@ namespace StudentsMVC.Controllers
         {
             try
             {
-                var student = _studentRepository.GetStudentByIdAsync(id).Result; // Utiliza el repositorio
+                var student = _studentService.GetStudentByIdAsync(id).Result; // Utiliza el IStudentService
                 return View(student);
             }
             catch
@@ -97,7 +97,7 @@ namespace StudentsMVC.Controllers
         {
             try
             {
-                var student = _studentRepository.GetStudentByIdAsync(id).Result; // Utiliza el repositorio
+                var student = _studentService.GetStudentByIdAsync(id).Result; // Utiliza el IStudentService
                 return View(student);
             }
             catch
@@ -113,7 +113,7 @@ namespace StudentsMVC.Controllers
         {
             try
             {
-                _studentRepository.DeleteStudentAsync(id); // Utiliza el repositorio
+                _studentService.DeleteStudentAsync(id); // Utiliza el IStudentService
                 return RedirectToAction(nameof(Index));
             }
             catch
